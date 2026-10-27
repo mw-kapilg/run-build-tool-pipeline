@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Check and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: latest
+
+      - name: Run check and test tasks
+        uses: matlab-actions/run-build@v2
+        with:
+          tasks: check test
